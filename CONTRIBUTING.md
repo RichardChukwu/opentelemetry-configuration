@@ -1,33 +1,84 @@
-# Contributing
+# Contributing to OpenTelemetry Configuration
 
-Read OpenTelemetry project [contributing
-guide](https://github.com/open-telemetry/community/blob/main/CONTRIBUTING.md)
-for general information about the project.
+## Introduction
 
-## Consistency Checks
+Welcome to the OpenTelemetry Configuration repository! 🎉
 
-This repository has various checks to ensure the schema changes are valid. Before using:
+Thank you for considering contributing to this project. Whether you're fixing a bug, adding new features, improving documentation, or reporting an issue, we appreciate your help in making OpenTelemetry better. 
 
-- Install the latest LTS release of **[Node](https://nodejs.org/)**.
-  For example, using **[nvm][]** under Linux run:
+This repository is part of the OpenTelemetry ecosystem, which provides observability tooling for distributed systems. Your contributions help enhance the configuration schema for OpenTelemetry users worldwide.
 
-  ```bash
-  nvm install --lts
-  ```
+If you have any questions, feel free to ask in the community channels. We’re happy to help! 😊
 
-- Install tooling packages:
 
-  ```bash
-  npm install
-  ```
+## Prerequisites
 
-You can perform all checks locally using this command:
+Before getting started, ensure you have the following installed:
 
+- **Node.js (LTS version)** – [Install Node.js](https://nodejs.org/)
+- **npm** (comes with Node.js)
+- **Make** (for running development tasks)
+
+
+## Local Run/Build
+
+To set up and run the project locally, follow these steps:
+
+### Installation
+Clone the repository and install dependencies:
+```bash
+git clone https://github.com/open-telemetry/opentelemetry-configuration.git
+cd opentelemetry-configuration
+npm install
+```
+
+### Running the Build
+To build the project, run:
+```bash
+make build
+```
+
+### Running Checks Locally
+To ensure everything is set up correctly, run all validation checks:
 ```bash
 make all
 ```
 
-## Description generation
+### Generating Descriptions
+To automatically update configuration property descriptions:
+```bash
+make generate-descriptions
+```
+If any changes are detected that are not committed, the build will fail.
+
+### Running Against a Single File
+To generate descriptions for a specific YAML file:
+```bash
+npm run-script generate-descriptions -- /absolute/path/to/input/file.yaml /absolute/path/to/output/file.yaml
+```
+For debugging output:
+```bash
+npm run-script generate-descriptions -- /absolute/path/to/input/file.yaml /absolute/path/to/output/file.yaml --debug
+```
+
+
+## Pull Requests
+
+A PR is ready to merge when:
+
+- It has at least **1 approval** from codeowners (TODO: bump to 2 when we have more codeowners)
+- There is no "request changes" from codeowners
+- If a change to the schema, at least one example is updated to illustrate the change
+- All required status checks pass
+- The PR includes a CHANGELOG entry under **## UNRELEASED** following the form:
+  ```markdown
+  * {Brief description of change}
+    ([#{PR Number}](https://github.com/open-telemetry/opentelemetry-configuration/pull/{PR Number}))
+  ```
+
+## Aditional Information
+
+### Description generation
 
 The [./examples](./examples) directory contains a variety of examples, which
 include important comments describing the semantics of the configuration
@@ -59,48 +110,12 @@ in `./examples` and overwrites each file in the process.
 if `make generate-descriptions` produces any changes which are not checked into
 version control.
 
-To run against a single file:
+## Further Help
 
-- Install the latest LTS release of **[Node](https://nodejs.org/)**.
-  For example, using **[nvm][]** under Linux run:
+Need help? Join our community:
 
-  ```bash
-  nvm install --lts
-  ```
+- **Slack**: [OpenTelemetry Slack](https://opentelemetry.io/community/)
+- **GitHub Discussions**: [OpenTelemetry Discussions](https://github.com/open-telemetry/opentelemetry-configuration/discussions)
+- **Issues**: If you encounter a bug, [open an issue](https://github.com/open-telemetry/opentelemetry-configuration/issues)
 
-- Install tooling packages:
-
-  ```bash
-  npm install
-  ```
-  
-- Run the script:
-
-```shell
-npm run-script generate-descriptions -- /absolute/path/to/input/file.yaml /absolute/path/to/output/file.yaml
-```
-
-Optionally, include the `--debug` parameter. This prints out information about
-each key value pair, including the computed dot notation location, the matched
-rule, the previous description, the new description, etc.
-
-```shell
-npm run-script generate-comments -- /absolute/path/to/input/file.yaml /absolute/path/to/output/file.yaml --debug
-```
-
-## Pull requests
-
-A PR is ready to merge when:
-
-* It has as least 1 approval from [codeowners](.github/CODEOWNERS) (TODO: bump to 2 when we have more codeowners)
-* There is no `request changes` from the [codeowners](.github/CODEOWNERS)
-* If a change to the schema, at least one [example](examples/) is updated to illustrate change
-* All required status checks pass
-* The PR includes a [CHANGELOG](CHANGELOG.md) entry under `## UNRELEASED` following the form:
-
-```markdown
-
-* {Brief description of change}
-  ([#{PR Number}]({https://github.com/open-telemetry/opentelemetry-configuration/pull/{PR Number}))
-
-```
+Thank you for contributing! 🚀
